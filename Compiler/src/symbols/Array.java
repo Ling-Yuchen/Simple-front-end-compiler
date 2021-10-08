@@ -1,6 +1,9 @@
 package symbols;
 
-import lexer.Tag;
+import java.io.*;
+import lexer.*;
+import symbols.*;
+import inter.*;
 
 public class Array extends Type {
     public Type of;         // 数组的元素类型
@@ -9,5 +12,8 @@ public class Array extends Type {
         super("[]", Tag.INDEX, size* type.width);
         this.size = size;
         this.of = type;
+    }
+    public String toString() {
+        return "[" + size + "]" + of.toString();
     }
 }

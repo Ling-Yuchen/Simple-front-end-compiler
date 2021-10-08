@@ -1,9 +1,9 @@
 package lexer;
 
-import symbols.Type;
-
-import java.io.IOException;
-import java.util.Hashtable;
+import java.io.*;
+import symbols.*;
+import inter.*;
+import java.util.*;
 
 /**
  * 词法分析器
@@ -56,12 +56,13 @@ public class Lexer {
                     ++line; break;
                 }
         }
-        if (readNextChar('*')) {
-            for ( ; ; readNextChar()) {
+        if (peek == '*') {
+            readNextChar();
+            while (true) {
                 if (peek == '\n') ++line;
                 if (peek == '*') {
                     if (readNextChar('/')) break;
-                }
+                } else readNextChar();
             }
         }
         skipBlank();
